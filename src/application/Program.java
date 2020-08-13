@@ -16,17 +16,36 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.print("Data de matrícula: ");
-		Date momento = sdf.parse(sc.next());
+		Date momentoMatricula = new Date();
+		System.out.print("Data de matrícula gerada automaticamente: " + sdf.format(momentoMatricula));
 		
-		System.out.print("Status da matrícula: ");
-		MatriculaStatus status = MatriculaStatus.valueOf(sc.next());
+		String disciplinas2sem = "\n|SISTEMAS DE INFORMAÇÃO  |"
+						       + "\n|LINGUAGEM DE PROGRAMAÇÃO|"
+						       + "\n|CÁLCULO                 |"
+						       + "\n|ENGENHARIA DE SOFTWARE I|";
 		
-		Aluno aluno = new Aluno(momento, status);
+		String disciplinas3sem = "\n|SISTEMAS OPERACIONAIS    |"
+			       			   + "\n|ESTRUTURA DE DADOS       |"
+			                   + "\n|ESTATÍSTICA              |"
+			                   + "\n|ENGENHARIA DE SOFTWARE II|";
+		
+		System.out.print("\n\nInsira seu nome: ");
+		String nome = sc.nextLine();
+		
+		System.out.print("Insira seu curso: ");
+		String curso = sc.nextLine();
+		
+		Aluno aluno = new Aluno(momentoMatricula, nome, curso);
 		
 		System.out.println();
+		System.out.print("Matérias requisitos para o 3º semestre : " + disciplinas2sem);
+		System.out.println();
+		System.out.println();
+		System.out.print("Matérias do 3º semestre : " + disciplinas3sem);
 		
-		System.out.print("Em quantas matérias deseja se matricular? ");
+		System.out.println();
+		System.out.println();
+		System.out.print("Em quantas matérias deseja se inscrever? ");
 		int N = sc.nextInt();
 		
 		System.out.println();
@@ -35,16 +54,15 @@ public class Program {
 		for (int i = 0; i < N; i++) {
 			System.out.print("Nome da disciplina desejada: ");
 			String materia = sc.nextLine();
+			String status = "PENDENTE";
 			
-			Matricula disciplina = new Matricula(materia);
+			Matricula disciplina = new Matricula(materia, MatriculaStatus.valueOf(status));
 			
 			aluno.addDisciplina(disciplina);
 		}
 		
 		System.out.println();
 		System.out.println(aluno);
-		
-		sc.close();
 
 	}
 

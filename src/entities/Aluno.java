@@ -12,18 +12,22 @@ public class Aluno {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	private Date momento;
-	private MatriculaStatus status;
+	private String nome;
+	private String curso;
 	
 	List<Matricula> Aluno = new ArrayList<>();
 	
 	public Aluno() {
 	}
 
-	public Aluno(Date momento, MatriculaStatus status) {
+	public Aluno(Date momento, String nome, String curso) {
+		
 		this.momento = momento;
-		this.status = status;
+		this.nome = nome;
+		this.curso = curso;
 	}
 
+	
 	public Date getMomento() {
 		return momento;
 	}
@@ -32,14 +36,22 @@ public class Aluno {
 		this.momento = momento;
 	}
 
-	public MatriculaStatus getStatus() {
-		return status;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setStatus(MatriculaStatus status) {
-		this.status = status;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
 	public void addDisciplina(Matricula materias) {
 		Aluno.add(materias);
 	}
@@ -49,10 +61,8 @@ public class Aluno {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Aluno matriculado em: ");
 		sb.append(sdf.format(momento));
-		sb.append("\nStatus da matrícula: ");
-		sb.append(status);
 		
-		sb.append("\nDisciplinas matriculadas: \n");
+		sb.append("\nDisciplinas matriculadas e status: \n");
 		for (Matricula item : Aluno) {
 			sb.append("-- " + item + "\n");
 		}
