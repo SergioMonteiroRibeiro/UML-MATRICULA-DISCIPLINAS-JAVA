@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import entities.Aluno;
+import entities.Classe;
 import entities.Matricula;
 import entities.enums.MatriculaStatus;
 
@@ -29,16 +30,39 @@ public class Program {
 			                   + "\n|ESTATÍSTICA              |"
 			                   + "\n|ENGENHARIA DE SOFTWARE II|";
 		
+		String periodoDisponivel = "|Manhã| |Tarde| |Noite| ";
+		
 		System.out.print("\n\nInsira seu nome: ");
 		String nome = sc.nextLine();
 		
 		System.out.print("Insira seu curso: ");
 		String curso = sc.nextLine();
 		
-		Aluno aluno = new Aluno(momentoMatricula, nome, curso);
+		System.out.print("\nQual o período em que deseja estudar? " + periodoDisponivel + ": ");
+		String periodo = sc.nextLine();
+		periodo = periodo.toLowerCase();
+		
+		System.out.print("Números das salas disponíveis: 12 - 7 - 3 ");
+		Classe sala = new Classe();
+		
+		Integer numSala = 0;
+		if (periodo.equals("manhã")) {
+			numSala = 12;
+		} 
+		
+		if (periodo.equals("tarde")) {
+			numSala = 7;
+		}
+		
+		if (periodo.equals("noite")) {
+			numSala = 3;
+		}
+		
+		sala = new Classe(numSala, periodo);
+		Aluno aluno = new Aluno(momentoMatricula, nome, curso, sala);
 		
 		System.out.println();
-		System.out.print("Matérias requisitos para o 3º semestre : " + disciplinas2sem);
+		System.out.print("\nMatérias requisitos para o 3º semestre : " + disciplinas2sem);
 		System.out.println();
 		System.out.println();
 		System.out.print("Matérias do 3º semestre : " + disciplinas3sem);
@@ -63,7 +87,9 @@ public class Program {
 		
 		System.out.println();
 		System.out.println(aluno);
-
+		System.out.println();
+		
+		sc.close();
 	}
 
 }

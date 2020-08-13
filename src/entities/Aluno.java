@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import entities.enums.MatriculaStatus;
-
 public class Aluno {
 
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -15,16 +13,18 @@ public class Aluno {
 	private String nome;
 	private String curso;
 	
+	private Classe sala;
+	
 	List<Matricula> Aluno = new ArrayList<>();
 	
 	public Aluno() {
 	}
 
-	public Aluno(Date momento, String nome, String curso) {
-		
+	public Aluno(Date momento, String nome, String curso, Classe sala) {
 		this.momento = momento;
 		this.nome = nome;
 		this.curso = curso;
+		this.sala = sala;
 	}
 
 	
@@ -61,11 +61,12 @@ public class Aluno {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Aluno matriculado em: ");
 		sb.append(sdf.format(momento));
-		
+		sb.append(sala);
 		sb.append("\nDisciplinas matriculadas e status: \n");
 		for (Matricula item : Aluno) {
-			sb.append("-- " + item + "\n");
+			sb.append(" " + item + "\n");
 		}
+		
 		return sb.toString();
 	}
 }
